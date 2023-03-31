@@ -3,10 +3,11 @@ import sys
 import io
 
 
-def compress_png(file, max_size=768, quality=70, stdout=True):
+def compress_png(file: bytes, out_path: str = None, max_size=768, quality=70):
     """comprime il file e lo scrive nello stdout o in un file"""
 
     with Image.open(io.BytesIO(file)) as img:
+
         # Convert to RGBA to avoid issues with transparency
         img = img.convert("RGBA")
 
@@ -29,10 +30,10 @@ def compress_png(file, max_size=768, quality=70, stdout=True):
         img = img.resize((new_width, new_height))
 
         # Save the compressed image as PNG
-        if stdout:
+        if out_path is None:
             #  print to stdout
             img.save(sys.stdout, optimize=True, quality=quality, format="png")
         else:
             # sovrascrive il file sorgente
-            img.save("compressed_image.png", optimize=True,
+            img.save(out_path, optimize=True,
                      quality=quality, format="png")

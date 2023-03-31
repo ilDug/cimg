@@ -3,11 +3,15 @@ import sys
 from compress import compress_png
 from pathlib import Path
 from typing import Optional
+from stats import compression_stats
 
 
 def main(
     image: Optional[str] = typer.Argument(
         None, help="il percorso all'immagine da comprimere"
+    ),
+    output: Optional[str] = typer.Argument(
+        None, help="il percorso dove salvare l'immagine"
     ),
     size: int = typer.Option(
         768,
@@ -37,10 +41,15 @@ def main(
     else:
         # se viene passato un riferimento al file come stringa
         # carica il path e legge i bytes da esso
-        path = Path(image)
-        image = path.read_bytes()
+        source = Path(image)
+        image = source.read_bytes()
 
-    compress_png(image, max_size=size, quality=quality, stdout=True)
+    compress_png(image, output, max_size=size, quality=quality)
+
+    # calcola les statistiche solo se sono passate le immagni come path
+    if output is not None and image is not None:
+        dest = Path(output)
+        compression_stats(source, dest)
 
 
 ###############################################################################
