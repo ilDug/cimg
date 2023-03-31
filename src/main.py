@@ -1,9 +1,9 @@
 import typer
 import sys
-from compress import compress_png
+from modules.compress import compress_png
+from modules.stats import compression_stats
 from pathlib import Path
 from typing import Optional
-from stats import compression_stats
 
 
 def main(
