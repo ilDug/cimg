@@ -27,7 +27,7 @@ def main(
     ),
 ):
     """
-    python compress-image.py -s 768 -q 70 < input_image.png > output.png
+    cimg -s 768 -q 70  input_image.png  [output_image.png]
 
     Comprime un'immagine con le dimensioni e la qualità volute.
 
