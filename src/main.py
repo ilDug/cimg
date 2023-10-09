@@ -80,7 +80,7 @@ def convert(
     ] = None,
 ):
     """
-    cimg convert input_image.heic  [output_image.png] || [ > stdout ]
+    cimg convert input_image.heic  [output_image.jpeg] || [ > stdout ]
 
     Converte l'immagine da formati tipo HEIC a JPEG.
 
