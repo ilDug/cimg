@@ -7,7 +7,6 @@ def compress_png(file: bytes, out_path: str = None, max_size=768, quality=70):
     """comprime il file e lo scrive nello stdout o in un file"""
 
     with Image.open(io.BytesIO(file)) as img:
-
         # Convert to RGBA to avoid issues with transparency
         img = img.convert("RGBA")
 
@@ -35,5 +34,4 @@ def compress_png(file: bytes, out_path: str = None, max_size=768, quality=70):
             img.save(sys.stdout, optimize=True, quality=quality, format="png")
         else:
             # sovrascrive il file sorgente
-            img.save(out_path, optimize=True,
-                     quality=quality, format="png")
+            img.save(out_path, optimize=True, quality=quality, format="png")
